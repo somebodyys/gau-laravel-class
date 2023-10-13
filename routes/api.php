@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GetPersonAction;
+use App\Http\Controllers\PersonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::group(['prefix' => '/persons'], function (){
+    Route::post('/', [PersonController::class, 'store']);
+    Route::get('/', GetPersonAction::class);
+});
+
+Route::get('/test', function (){
+
 });
