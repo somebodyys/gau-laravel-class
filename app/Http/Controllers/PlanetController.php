@@ -26,5 +26,24 @@ class PlanetController extends Controller
         $planet->notify(
             new PlanetCreatedNotification()
         );
+
+        return [
+            'planet' => [
+                'name' => $data['name'],
+                'diameter' => $data['diameter'],
+                'description' => $data['description'],
+                'atmosphere' => $data['atmosphere'],
+                'minerals' => $data['minerals'],
+                'email' => $data['email']
+            ]
+        ];
+    }
+
+    public function travel(Request $request){
+        $planet = $request->get('planet');
+
+        return [
+            'response' => "I can travel to the $planet"
+        ];
     }
 }

@@ -22,4 +22,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '/planets'], function (){
     Route::post('/', [PlanetController::class, 'store']);
+    Route::post('/travel', [PlanetController::class, 'travel']);
 });
+
+Route::get('/hello', function (){
+    return [
+        'response' => 'Hello Tornike!'
+    ];
+});
+
