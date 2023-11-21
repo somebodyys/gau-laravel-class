@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PlanetController;
+use App\Http\Controllers\Users\CreateUserAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post('/register', CreateUserAction::class);
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::middleware('auth:sanctum')->group(function (){
+
+});
+
 
 
 Route::group(['prefix' => '/planets'], function (){
