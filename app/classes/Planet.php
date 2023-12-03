@@ -3,6 +3,7 @@
 namespace App\classes;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class Planet
 {
@@ -14,6 +15,8 @@ class Planet
     protected bool $atmosphere;
     protected array $minerals = [];
     protected string $email;
+
+    protected string $table = 'planets';
 
     public function __construct(string $name, float $diameter, string $description, bool $atmosphere, array $minerals, string $email)
     {
@@ -29,6 +32,15 @@ class Planet
     public function routeNotificationFor($driver, $notification = null): string
     {
         return $this->email;
+    }
+
+    protected function create(){
+        DB::table($this->table)->insert([
+            'name' => $this->name,
+            'description' => $this->description,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 
 }

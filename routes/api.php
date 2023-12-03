@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\PlanetController;
 use App\Http\Controllers\Users\CreateUserAction;
 use Illuminate\Http\Request;
@@ -21,7 +23,15 @@ Route::middleware('auth:sanctum')->group(function (){
 
 });
 
+Route::group(['prefix' => '/brands'], function (){
+   Route::post('/', [BrandController::class, 'store']);
+   Route::get('/getFakeBrand', [BrandController::class, 'createAndGetFakeBrand']);
+   Route::post('/{brand}/attachCars', [BrandController::class, 'attachCars']);
+});
 
+Route::group(['prefix' => '/cars'], function (){
+    Route::post('/{car}/users/{user}', [CarController::class, 'buy']);
+});
 
 Route::group(['prefix' => '/planets'], function (){
     Route::post('/', [PlanetController::class, 'store']);
