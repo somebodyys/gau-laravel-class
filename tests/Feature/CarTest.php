@@ -28,4 +28,25 @@ class CarTest extends TestCase
             'car_id' => $car->id
         ]);
     }
+
+    public function test_it_can_get_list_of_cars(){
+        $response = $this->getJson('/api/cars');
+
+        $response->assertOk()
+            ->assertJsonStructure([
+                'cars' => [
+                    '*' => [
+                        'id',
+                        'model',
+                        'color',
+                        'price',
+                        'brand' => [
+                            'id',
+                            'name',
+                            'description'
+                        ]
+                    ]
+                ]
+            ]);
+    }
 }

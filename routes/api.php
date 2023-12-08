@@ -31,6 +31,7 @@ Route::group(['prefix' => '/brands'], function (){
 
 Route::group(['prefix' => '/cars'], function (){
     Route::post('/{car}/users/{user}', [CarController::class, 'buy']);
+    Route::get('/', [CarController::class, 'getCars']);
 });
 
 Route::group(['prefix' => '/planets'], function (){
