@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Planet;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/planets', function() {
+    $planets = Planet::factory(10)->make();
+    $users = User::factory(10)->make();
+
+    return view('space.planets', [
+        'planets' => $planets,
+        'users' => $users
+    ]);
 });
